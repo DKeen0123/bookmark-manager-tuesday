@@ -1,0 +1,26 @@
+Show list of links
+
+As a user
+So I can see my bookmarks
+I want to see a list of links
+
+user
+
+link-list
+
+links
+
+
+╔════════════╗     contains         ╔════════════╗
+║            ║--------------------->║            ║
+  link-list                             links
+║            ║                      ║            ║
+╚════════════╝                      ╚════════════╝
+
+
+
+╔════════════╗          @links      ╔════════════╗
+║            ║--------------------->║            ║
+║ Controller ║      array of links  bookmark-list
+║            ║<---------------------║ @links = []║
+╚════════════╝                      ╚════════════╝
