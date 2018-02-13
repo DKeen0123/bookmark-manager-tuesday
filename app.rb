@@ -9,4 +9,13 @@ class BookmarkManager < Sinatra::Base
     erb :index
   end
 
+  get '/add' do
+    erb :add
+  end
+
+  post '/new' do
+    Link.add(params[:bookmark])
+    redirect '/'
+  end
+
 end

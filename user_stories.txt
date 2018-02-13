@@ -24,3 +24,7 @@ links
 ║ Controller ║      array of links  bookmark-list
 ║            ║<---------------------║ @links = []║
 ╚════════════╝                      ╚════════════╝
+
+As a user
+So I can save new links to my bookmarks
+I want to be able to add new links
