@@ -1,5 +1,7 @@
 <h1>Welcome to Bookmark Manager</h1>
 
-<% @links.each do |link| %>
-<%= link %>
-<% end %>
+<ol>
+  <% @links.each do |link| %>
+  <li><a href="<%= link %>"><%= link %></a></li>
+  <% end %>
+</ol>
