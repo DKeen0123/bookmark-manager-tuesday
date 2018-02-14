@@ -21,3 +21,4 @@ class Link
     con.exec "INSERT INTO links(url) VALUES('#{new_link}')"
   end
 end
+ 
