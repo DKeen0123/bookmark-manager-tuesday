@@ -1,6 +1,8 @@
+require './lib/databaseconnection'
+require 'pg'
 
-
-task :database_setup do
+task :test_database_setup do
+  p "Setting up database..."
   DatabaseConnection.setup('bookmark_manager_test')
   DatabaseConnection.query('DROP TABLE IF EXISTS links')
   DatabaseConnection.query('CREATE TABLE links (id SERIAL PRIMARY KEY, url VARCHAR(60))')
