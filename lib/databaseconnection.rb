@@ -9,4 +9,7 @@ class DatabaseConnection
     @connection.exec query
   end
 
+  def self.stop
+    @connection.close()
+  end
 end

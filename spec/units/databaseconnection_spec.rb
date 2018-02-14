@@ -2,14 +2,17 @@ require 'databaseconnection'
 
 describe DatabaseConnection do
   context '#setup' do
-    it 'returns a connection object' do
-      expect(described_class.setup("bookmark_manager_test")).to be_an_instance_of PG::Connection
+    it 'sets up a connection to the database through PG' do 
+      expect(PG).to receive(:connect).with(dbname: 'bookmark_manager_test')
+      DatabaseConnection.setup('bookmark_manager_test')
     end
   end
 
   context '#query' do
-    it 'returns a result object' do
-      expect(described_class.query("SELECT * FROM links")).to be_an_instance_of PG::Result
+    it 'executes a query' do
+      con = DatabaseConnection.setup('bookmark_manager_test')
+      expect(con).to receive(:exec).with("SELECT * FROM links")
+      DatabaseConnection.query("SELECT * FROM links")
     end
   end
 

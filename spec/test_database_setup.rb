@@ -1,7 +1,8 @@
 require 'pg'
+require 'databaseconnection'
 
-con = PG.connect(dbname: 'bookmark_manager_test')
-con.exec 'DROP TABLE IF EXISTS links'
-con.exec 'CREATE TABLE links (id SERIAL PRIMARY KEY, url VARCHAR(60))'
-con.exec "INSERT INTO links(url) VALUES('http://www.google.com')"
-con.exec "INSERT INTO links(url) VALUES('http://www.twitter.com')"
+DatabaseConnection.setup('bookmark_manager_test')
+DatabaseConnection.query('DROP TABLE IF EXISTS links')
+DatabaseConnection.query('CREATE TABLE links (id SERIAL PRIMARY KEY, url VARCHAR(60))')
+DatabaseConnection.query("INSERT INTO links(url) VALUES('http://www.google.com')")
+DatabaseConnection.query("INSERT INTO links(url) VALUES('http://www.twitter.com')")
