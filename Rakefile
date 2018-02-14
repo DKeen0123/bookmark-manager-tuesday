@@ -10,7 +10,7 @@ task :test_database_setup do
   DatabaseConnection.query("INSERT INTO links(url) VALUES('http://www.twitter.com')")
 end
 
-task :set_up do 
+task :set_up do
 p "Creating databases..."
 ['bookmark_manager', 'bookmark_manager_test'].each do |database|
   con = PG.connect
@@ -18,3 +18,4 @@ p "Creating databases..."
   DatabaseConnection.setup("#{database}")
   DatabaseConnection.query('CREATE TABLE links (id SERIAL PRIMARY KEY, url VARCHAR(60))')
   end
+end
