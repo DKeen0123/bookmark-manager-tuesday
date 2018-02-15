@@ -10,6 +10,10 @@ class BookmarkManager < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
+    redirect '/links'
+  end
+
+  get '/links' do
     @links = Link.all
     erb :index
   end
