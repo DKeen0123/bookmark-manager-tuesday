@@ -12,9 +12,9 @@ class Link
 
   def self.all
     result = DatabaseConnection.query("SELECT * FROM links")
-    arr = []
-    result.each_row { |row| arr.push(Link.new(row)) }
-    arr
+    @arr = []
+    result.each_row { |row| @arr.push(Link.new(row)) }
+    @arr
   end
 
   def self.add(new_link, title)
@@ -29,13 +29,17 @@ class Link
     DatabaseConnection.query("DELETE FROM links WHERE title = '#{bookmark}'")
   end
 
-  def self.update(old_title, old_url, new_title, new_url)
+  def self.update(new_title, new_url)
     if Link.valid?(new_url)
-      DatabaseConnection.query("UPDATE links SET title = '#{new_title}' WHERE title = '#{old_title}'")
-      DatabaseConnection.query("UPDATE links SET url = '#{new_url}' WHERE url = '#{old_url}'")
+      DatabaseConnection.query("UPDATE links SET title = '#{new_title}' WHERE id = ''")
+      DatabaseConnection.query("UPDATE links SET url = '#{new_url}' WHERE id = ''")
     else
-      false 
+      false
     end
+  end
+
+  def self.find(id)
+    @arr.map { |link| return link.url if link.id == id}
   end
 
   def self.valid?(url)

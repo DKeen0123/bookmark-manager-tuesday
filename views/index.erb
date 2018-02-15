@@ -3,8 +3,9 @@
 <ol>
   <% @links.each do |link| %>
   <li><a href="<%= link.url %>"><%= link.title %></a>
-    <form action="/edit" method="post">
-      <input type="submit" name="<%= link.id %>" value="Edit">
+    <form action="/update" method="post">
+      <input type="hidden" name="id" value="<%= link.id %>">
+      <input type="submit" value="Edit <%= link.title %>">
     </form>
   </li>
   <% end %>

@@ -27,4 +27,10 @@ describe Link do
       expect(described_class.all.last.title).to eq 'Reddit'
     end
   end
+
+  context '#find' do
+    it "finds a url based on id" do
+      expect(described_class.find("1")).to eq 'http://www.google.com'
+    end
+  end
 end
