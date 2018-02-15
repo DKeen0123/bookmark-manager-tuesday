@@ -7,6 +7,12 @@
 
 <h1>Welcome to Bookmark Manager</h1>
 
+<form action="/new" method="post">
+  <input type="text" name="title" placeholder="add a title here">
+  <input type="text" name="bookmark" placeholder="add new link here">
+  <input type="submit" value="Add Bookmark">
+</form>
+
 <ol>
   <% @links.each do |link| %>
   <li><a href="<%= link.url %>"><%= link.title %></a>
@@ -21,11 +27,3 @@
   </li>
   <% end %>
 </ol>
-
-<form action="/add">
-  <input type="submit" value="Add">
-</form>
-
-<form action="/delete">
-  <input type="submit" value="Delete">
-</form>

@@ -14,10 +14,6 @@ class BookmarkManager < Sinatra::Base
     erb :index
   end
 
-  get '/add' do
-    erb :add
-  end
-
   post '/delete' do
       Link.delete(params[:id])
       redirect '/'
