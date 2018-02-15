@@ -3,10 +3,11 @@ require 'net/http'
 
 class Link
 
-  attr_reader :id, :url
+  attr_reader :id, :url, :title
   def initialize(row)
     @id = row[0]
     @url = row[1]
+    @title = row[2]
   end
 
   def self.all
@@ -16,9 +17,9 @@ class Link
     p arr
   end
 
-  def self.add(new_link)
+  def self.add(new_link, title)
     if Link.valid?(new_link)
-      DatabaseConnection.query("INSERT INTO links(url) VALUES('#{new_link}')")
+      DatabaseConnection.query("INSERT INTO links(url, title) VALUES('#{new_link}', '#{title}')")
     else
       false
     end

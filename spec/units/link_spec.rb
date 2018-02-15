@@ -6,7 +6,7 @@ describe Link do
   end
 
   it 'adds a new link to the database' do
-    described_class.add("http://www.facebook.com")
+    described_class.add("http://www.facebook.com", "Facebook")
     expect(described_class.all.last.url).to eq "http://www.facebook.com"
   end
 

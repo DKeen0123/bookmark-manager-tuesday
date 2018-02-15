@@ -19,7 +19,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/new' do
-     redirect '/' unless !Link.add(params[:bookmark])
+     redirect '/' unless !Link.add(params[:bookmark], params[:title])
      flash[:notice] = "That is not a valid URL." unless Link.add(params[:bookmark])
   end
 
