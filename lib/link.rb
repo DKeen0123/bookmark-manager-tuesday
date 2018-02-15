@@ -3,9 +3,17 @@ require 'net/http'
 
 class Link
 
+  attr_reader :id, :url
+  def initialize(row)
+    @id = row[0]
+    @url = row[1]
+  end
+
   def self.all
-    result = DatabaseConnection.query("SELECT * FROM links")
-    result.column_values(1)
+    p result = DatabaseConnection.query("SELECT * FROM links")
+    arr = []
+    result.each_row { |row| arr.push(Link.new(row)) }
+    p arr
   end
 
   def self.add(new_link)
@@ -17,11 +25,9 @@ class Link
   end
 
   def self.valid?(url)
-    p url = URI(url)
-    # p Net::HTTP.get(url)
+    url = URI(url)
     res = Net::HTTP.get_response(url)
-    p res.code == "301" or "302" or "200"
-    # Net::HTTP.get(url).include?('<HTML><HEAD>')
+    res.code == "301" || "302" || "200"
     rescue
       false
   end
