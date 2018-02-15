@@ -26,12 +26,14 @@ class BookmarkManager < Sinatra::Base
     #   redirect '/'
     # rescue
     # flash[:notice] = "That is not a valid URL."
-    if p Link.valid?(params[:bookmark].to_s)
-      Link.add(params[:bookmark])
-      redirect '/'
-    else
+    p "***********"
+
+    unless Link.add(params[:bookmark])
       flash[:notice] = "That is not a valid URL."
+    else
+      redirect '/'
     end
+
   end
 
 end
