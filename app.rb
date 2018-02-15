@@ -19,12 +19,17 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/new' do
-    url = URI("#{params[:bookmark]}")
-    begin
-      Net::HTTP.get(url).include?("<HTML><HEAD>")
+    # url = URI("#{params[:bookmark]}")
+    # begin
+    #   Net::HTTP.get(url).include?("<HTML><HEAD>")
+    #   Link.add(params[:bookmark])
+    #   redirect '/'
+    # rescue
+    # flash[:notice] = "That is not a valid URL."
+    if p Link.valid?(params[:bookmark].to_s)
       Link.add(params[:bookmark])
       redirect '/'
-    rescue
+    else
       flash[:notice] = "That is not a valid URL."
     end
   end
