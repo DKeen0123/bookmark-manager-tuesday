@@ -2,7 +2,11 @@
 
 <ol>
   <% @links.each do |link| %>
-  <li><a href="<%= link.url %>"><%= link.title %></a></li>
+  <li><a href="<%= link.url %>"><%= link.title %></a>
+    <form action="/edit" method="post">
+      <input type="submit" name="<%= link.id %>" value="Edit">
+    </form>
+  </li>
   <% end %>
 </ol>
 
