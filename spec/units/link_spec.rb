@@ -16,21 +16,15 @@ describe Link do
 
   context '#delete' do
     it "deletes a link" do
-      described_class.delete('Google')
+      described_class.delete('1')
       expect(described_class.all.first.title).not_to be 'Google'
     end
   end
 
   context '#update' do
     it "edits and updates already existing bookmarks" do
-      described_class.update('Twitter', 'http://www.twitter.com', 'Reddit', 'http://www.reddit.com')
+      described_class.update('2', 'Reddit', 'http://www.reddit.com')
       expect(described_class.all.last.title).to eq 'Reddit'
-    end
-  end
-
-  context '#find' do
-    it "finds a url based on id" do
-      expect(described_class.find("1")).to eq 'http://www.google.com'
     end
   end
 end

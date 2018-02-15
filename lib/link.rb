@@ -25,21 +25,17 @@ class Link
     end
   end
 
-  def self.delete(bookmark)
-    DatabaseConnection.query("DELETE FROM links WHERE title = '#{bookmark}'")
+  def self.delete(id)
+    DatabaseConnection.query("DELETE FROM links WHERE id = '#{id}'")
   end
 
-  def self.update(new_title, new_url)
+  def self.update(id, new_title, new_url)
     if Link.valid?(new_url)
-      DatabaseConnection.query("UPDATE links SET title = '#{new_title}' WHERE id = ''")
-      DatabaseConnection.query("UPDATE links SET url = '#{new_url}' WHERE id = ''")
+      DatabaseConnection.query("UPDATE links SET title = '#{new_title}' WHERE id = '#{id}'")
+      DatabaseConnection.query("UPDATE links SET url = '#{new_url}' WHERE id = '#{id}'")
     else
       false
     end
-  end
-
-  def self.find(id)
-    @arr.map { |link| return link.url if link.id == id}
   end
 
   def self.valid?(url)

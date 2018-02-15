@@ -1,3 +1,10 @@
+<% flash.keys.each do |type| %>
+  <div data-alert class="flash <%= type %> alert-box radius">
+    <%= flash[type] %>
+    <a href="/" class="close">&times;</a>
+  </div>
+<% end %>
+
 <h1>Welcome to Bookmark Manager</h1>
 
 <ol>
@@ -6,6 +13,10 @@
     <form action="/update" method="post">
       <input type="hidden" name="id" value="<%= link.id %>">
       <input type="submit" value="Edit <%= link.title %>">
+    </form>
+    <form action="/delete" method="post">
+      <input type="hidden" name="id" value="<%= link.id %>">
+      <input type="submit" value="Delete <%= link.title %>">
     </form>
   </li>
   <% end %>
@@ -17,8 +28,4 @@
 
 <form action="/delete">
   <input type="submit" value="Delete">
-</form>
-
-<form action="/update">
-  <input type="submit" value="Update">
 </form>
