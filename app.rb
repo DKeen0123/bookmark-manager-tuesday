@@ -18,9 +18,27 @@ class BookmarkManager < Sinatra::Base
     erb :add
   end
 
+  get '/delete' do
+    erb :delete
+  end
+
+  get '/update' do
+    erb :update
+  end
+
+  post '/deleted' do
+    Link.delete(params[:rm_bookmark])
+    redirect '/'
+  end
+
   post '/new' do
      redirect '/' unless !Link.add(params[:bookmark], params[:title])
-     flash[:notice] = "That is not a valid URL." unless Link.add(params[:bookmark])
+     flash[:notice] = "That is not a valid URL." unless Link.add(params[:bookmark], params[:title])
+  end
+
+  post '/updated' do
+    redirect '/' unless !Link.update(params[:old_title], params[:old_url], params[:new_title], params[:new_url])
+    flash[:notice] = "That is not a valid URL." unless Link.update(params[:old_title], params[:old_url], params[:new_title], params[:new_url])
   end
 
 end
